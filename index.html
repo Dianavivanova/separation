@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Онлайн тест: Сепарация от родителей</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    function calculateResult() {
+      let total = 0;
+      const answers = document.querySelectorAll('input[type=number]');
+      answers.forEach(input => {
+        const val = parseInt(input.value);
+        if (!isNaN(val)) total += val;
+      });
+
+      let resultText = '';
+      if (total <= 20) {
+        resultText = '💡 Сильная связь и зависимость. Вы всё ещё сильно опираетесь на мнение родителей. Это может мешать вам строить зрелые отношения с собственными детьми. Стоит исследовать свои границы.';
+      } else if (total <= 35) {
+        resultText = '🌱 Процесс сепарации идёт. У вас уже есть элементы автономии, но в некоторых ситуациях вы ещё склонны возвращаться в роль «ребёнка».';
+      } else {
+        resultText = '🌿 Зрелая сепарация. Вы — взрослый человек, в контакте с родителями, но с чёткими границами. Есть опора на себя и уважение к себе и своим детям.';
+      }
+
+      document.getElementById('result').innerText = `Ваш результат: ${total} баллов\n${resultText}`;
+      document.getElementById('result-section').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</head>
+<body class="bg-gradient-to-b from-blue-100 to-white min-h-screen font-sans">
+  <div class="max-w-2xl mx-auto py-10 px-4">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">🧭 Онлайн-тест для родителей</h1>
+    <h2 class="text-xl text-center text-gray-700 mb-6">Прошли ли вы сепарацию от своих родителей?</h2>
+
+    <p class="text-gray-600 mb-6">Оцените утверждения по шкале от 1 (совсем не согласен) до 5 (полностью согласен)</p>
+
+    <form onsubmit="event.preventDefault(); calculateResult();" class="space-y-6">
+      <div class="space-y-4">
+        <h3 class="text-lg font-semibold text-gray-800">🔸 Эмоциональная сепарация</h3>
+        <div>
+          <label class="block">1. Когда мои родители мной недовольны, я чувствую вину и тревогу.</label>
+          <input type="number" min="1" max="5" class="mt-1 border rounded w-full p-2">
+        </div>
+        <div>
+          <label class="block">2. Я часто думаю, что «должен(на)» поступить так, как они хотят.</label>
+          <input type="number" min="1" max="5" class="mt-1 border rounded w-full p-2">
+        </div>
+        <div>
+          <label class="block">3. Если мои взгляды отличаются от родительских, мне трудно это отстоять.</label>
+          <input type="number" min="1" max="5" class="mt-1 border rounded w-full p-2">
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-lg font-semibold text-gray-800">🔸 Финансовая / Бытовая сепарация</h3>
+        <div>
+          <label class="block">4. Я могу принимать важные решения без одобрения родителей.</label>
+          <input type="number" min="1" max="5" class="mt-1 border rounded w-full p-2">
+        </div>
+        <div>
+          <label class="block">5. Мои родители не вмешиваются в мою повседневную жизнь, финансы и быт.</label>
+          <input type="number" min="1" max="5" class="mt-1 border rounded w-full p-2">
+        </div>
+        <div>
+          <label class="block">6. Я не жду от родителей помощи или разрешения, чтобы делать то, что считаю нужным.</label>
+          <input type="number" min="1" max="5" class="mt-1 border rounded w-full p-2">
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-lg font-semibold text-gray-800">🔸 Внутренняя автономия</h3>
+        <div>
+          <label class="block">7. Я не чувствую себя «плохим сыном/дочерью», если делаю не так, как ждали от меня родители.</label>
+          <input type="number" min="1" max="5" class="mt-1 border rounded w-full p-2">
+        </div>
+        <div>
+          <label class="block">8. Мне не нужно одобрение родителей, чтобы чувствовать себя хорошо.</label>
+          <input type="number" min="1" max="5" class="mt-1 border rounded w-full p-2">
+        </div>
+        <div>
+          <label class="block">9. Я могу поговорить с ними как со взрослыми, не становясь снова «ребёнком».</label>
+          <input type="number" min="1" max="5" class="mt-1 border rounded w-full p-2">
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <h3 class="text-lg font-semibold text-gray-800">🔸 Влияние на воспитание</h3>
+        <div>
+          <label class="block">10. Я замечаю, что повторяю в отношениях с детьми то, что делали мои родители, даже если не хочу.</label>
+          <input type="number" min="1" max="5" class="mt-1 border rounded w-full p-2">
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-full mt-6 hover:bg-blue-700">Узнать результат</button>
+      </div>
+    </form>
+
+    <div id="result-section" class="mt-10 bg-white p-6 rounded-2xl shadow text-gray-800">
+      <h3 class="text-xl font-bold mb-4">📊 Результат</h3>
+      <p id="result" class="whitespace-pre-line"></p>
+    </div>
+  </div>
+</body>
+</html>
